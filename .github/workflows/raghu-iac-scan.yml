@@ -1,0 +1,28 @@
+name: Cloud Security IaC Scan
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+
+  workflow_dispatch:
+
+permissions: 
+  contents: read
+  checks: write
+  issues: write
+  pull-requests: write
+  security-events: write
+  statuses: write
+  
+jobs:
+  Scan:
+    uses: rahg0/w-reusable-workflow/.github/workflows/orca-iac-custom.yml@main
+    with:
+      project_key: slrk
+      path: ./
+    secrets: inherit
